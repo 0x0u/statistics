@@ -1,8 +1,9 @@
+from scipy import stats
+import statistics as st
 import numpy as np
-import statistics
+import math
 
 #算術平均
-
 def mean():
   r_num = np.random.randint(0,100,100)
   a = 0
@@ -13,12 +14,19 @@ def mean():
   print(m,nump)
 
 #中央値
-
 def median():
-  r_num = np.random.randint(0,100,100)
+  r = np.random.randint(0,100,100)
+  r = sorted(r)
+  if len(r) % 2 == 0:
+      me = (r[int(len(r)/2-1)] + r[int(len(r)/2)]) / 2
+      nump = np.media(r)
+      print(me,nump)
+  else:
+      me = r[len(r)//2]
+      nump = np.median(r)
+      print(me,nump)
 
 #最頻値()
-
 def mode():
     r = np.random.randint(0,100,100)
     dic = {}
@@ -27,7 +35,12 @@ def mode():
             dic.setdefault(i,1)
         else:
             dic.update({i:dic[i]+1})
-    mode = statistics.mode(r)
-    print(mode,dic[mode])
-    print(max(dic.values()))
-mode()
+    v = max(dic.values())
+    for i in dic:
+        if dic[i] == v:
+            print(i,v)
+
+    power = stats.mode(r)
+    print(power)
+
+#分散
