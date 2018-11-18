@@ -44,3 +44,26 @@ def mode():
     print(power)
 
 #分散
+def variance():
+    r = np.random.randint(0,100,100)
+    m  = sum(r) / len(r)
+    x = 0
+    for i in r:
+        x += (i - m)**2
+    s2 = x/len(r)
+    nump = np.var(r)
+    print(s2,nump)
+
+
+#標準偏差
+def standard_deviation():
+    r = np.random.randint(0,100,100)
+    m  = sum(r) / len(r)
+    x = 0
+    for i in r:
+        x += (i - m)**2
+    s = (x/len(r))**0.5
+    nump = np.std(r)
+    print(s,nump)
+
+#共分散
