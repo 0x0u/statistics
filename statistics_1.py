@@ -66,4 +66,34 @@ def standard_deviation():
     nump = np.std(r)
     print(s,nump)
 
+#標準化
+def standardization():
+    r = np.random.randint(0,100,100)
+    m  = sum(r) / len(r)
+    x = 0
+    for i in r:
+        x += (i - m)**2
+    s = (x/len(r))**0.5
+    for i in r:
+        print((i - m) / s)
+
 #共分散
+def covariance():
+    r1 = np.random.randint(0,100,100)
+    r2 = np.random.randint(0,100,100)
+    m1 = sum(r1) / len(r1)
+    m2 = sum(r2) / len(r2)
+    d1 = [i - m1 for i in r1]
+    d2 = [i - m2 for i in r2]
+    c = 0
+    for c1,c2 in zip(d1,d2):
+        c += c1 * c2
+    c = c / len(r1)
+
+    nump = np.cov([r1,r2])
+    print(c)
+    print(nump)
+
+#相関係数
+def correlation():
+     
