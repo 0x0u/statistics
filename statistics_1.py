@@ -1,7 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-
 #算術平均
 def mean(num):
     m = sum(num) / len(num)
