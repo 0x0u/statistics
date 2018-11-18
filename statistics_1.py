@@ -79,6 +79,22 @@ def standardization():
 
 #共分散
 def covariance():
+    # r1 = np.random.randint(0,100,100)
+    # r2 = np.random.randint(0,100,100)
+    r1 = [36,73,51,80]
+    r2 = [90,57,36,17]
+    m1 = sum(r1) / len(r1)
+    m2 = sum(r2) / len(r2)
+    d1 = [i - m1 for i in r1]
+    d2 = [i - m2 for i in r2]
+    c = 0
+    for c1,c2 in zip(d1,d2):
+        c += c1 * c2
+    c = c / len(r1)
+    print(c)
+
+#相関係数
+def correlation():
     r1 = np.random.randint(0,100,100)
     r2 = np.random.randint(0,100,100)
     m1 = sum(r1) / len(r1)
@@ -90,10 +106,11 @@ def covariance():
         c += c1 * c2
     c = c / len(r1)
 
-    nump = np.cov([r1,r2])
-    print(c)
-    print(nump)
-
-#相関係数
-def correlation():
-     
+    sx,sy = 0,0
+    for s1,s2 in zip(r1,r2):
+        sx += (s1 - m1)**2
+        sy += (s2 - m2)**2
+    s = ((sx/len(r1))**0.5) * ((sy/len(r1))**0.5)
+    nu = np.corrcoef(r1,r2)[0,1]
+    print(c / s)
+    print(nu)
