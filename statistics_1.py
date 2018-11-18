@@ -1,36 +1,25 @@
-from scipy import stats
-import statistics as st
+import matplotlib.pyplot as plt
 import numpy as np
-import math
+
 
 #算術平均
-def mean():
-  r_num = np.random.randint(0,100,100)
-  a = 0
-  for i in r_num:
-    a += i
-  m = a / len(r_num)
-  nump = np.mean(r_num)
-  print(m,nump)
+def mean(num):
+    m = sum(num) / len(num)
 
 #中央値
-def median():
-  r = np.random.randint(0,100,100)
-  r = sorted(r)
-  if len(r) % 2 == 0:
-      me = (r[int(len(r)/2-1)] + r[int(len(r)/2)]) / 2
-      nump = np.media(r)
-      print(me,nump)
+def median(num):
+  num = sorted(num)
+  if len(num) % 2 == 0:
+      me = (num[int(len(num)/2-1)] + num[int(len(num)/2)]) / 2
+      print(me)
   else:
-      me = r[len(r)//2]
-      nump = np.median(r)
-      print(me,nump)
+      me = r[len(num)//2]
+      print(me)
 
 #最頻値()
-def mode():
-    r = np.random.randint(0,100,100)
+def mode(num):
     dic = {}
-    for i in r:
+    for i in num:
         if i not in dic.keys():
             dic.setdefault(i,1)
         else:
@@ -40,41 +29,32 @@ def mode():
         if dic[i] == v:
             print(i,v)
 
-    power = stats.mode(r)
-    print(power)
-
 #分散
-def variance():
-    r = np.random.randint(0,100,100)
-    m  = sum(r) / len(r)
+def variance(num):
+    m  = sum(num) / len(num)
     x = 0
-    for i in r:
+    for i in num:
         x += (i - m)**2
-    s2 = x/len(r)
-    nump = np.var(r)
-    print(s2,nump)
-
+    s2 = x/len(num)
+    print(s2)
 
 #標準偏差
-def standard_deviation():
-    r = np.random.randint(0,100,100)
-    m  = sum(r) / len(r)
+def standard_deviation(num):
+    m  = sum(num) / len(num)
     x = 0
-    for i in r:
+    for i in num:
         x += (i - m)**2
-    s = (x/len(r))**0.5
-    nump = np.std(r)
-    print(s,nump)
+    s = (x/len(num))**0.5
+    print(s)
 
 #標準化
-def standardization():
-    r = np.random.randint(0,100,100)
-    m  = sum(r) / len(r)
+def standardization(num):
+    m  = sum(num) / len(num)
     x = 0
-    for i in r:
+    for i in num:
         x += (i - m)**2
-    s = (x/len(r))**0.5
-    for i in r:
+    s = (x/len(num))**0.5
+    for i in num:
         print((i - m) / s)
 
 #共分散
@@ -95,8 +75,10 @@ def covariance():
 
 #相関係数
 def correlation():
-    r1 = np.random.randint(0,100,100)
-    r2 = np.random.randint(0,100,100)
+    # r1 = np.random.randint(0,100,100)
+    # r2 = np.random.randint(0,100,100)
+    r1 = [12,38,28,50,76]
+    r2 = [28,35,55,87,93]
     m1 = sum(r1) / len(r1)
     m2 = sum(r2) / len(r2)
     d1 = [i - m1 for i in r1]
@@ -111,6 +93,17 @@ def correlation():
         sx += (s1 - m1)**2
         sy += (s2 - m2)**2
     s = ((sx/len(r1))**0.5) * ((sy/len(r1))**0.5)
-    nu = np.corrcoef(r1,r2)[0,1]
-    print(c / s)
-    print(nu)
+    cor = c / s
+    print(cor)
+    plt.scatter(r1,r2)
+    plt.show()
+
+
+if __name__ == '__main__':
+    num = np.random.randint(0,100,100)
+    mean(num)
+    median(num)
+    mode(num)
+    variance(num)
+    standard_deviation(num)
+    standardization(num)
