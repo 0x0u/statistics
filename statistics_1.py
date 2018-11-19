@@ -7,8 +7,7 @@ def mean():
   for i in r_num:
     a += i
   m = a / len(r_num)
-  nump = np.mean(r_num)
-  print(m,nump)
+  print(m)
 
 #中央値
 def median():
@@ -16,12 +15,10 @@ def median():
   r = sorted(r)
   if len(r) % 2 == 0:
       me = (r[int(len(r)/2-1)] + r[int(len(r)/2)]) / 2
-      nump = np.media(r)
-      print(me,nump)
+      print(me)
   else:
       me = r[len(r)//2]
-      nump = np.median(r)
-      print(me,nump)
+      print(me)
 
 #最頻値()
 def mode():
@@ -37,9 +34,6 @@ def mode():
         if dic[i] == v:
             print(i,v)
 
-    power = stats.mode(r)
-    print(power)
-
 #分散
 def variance():
     r = np.random.randint(0,100,100)
@@ -48,9 +42,7 @@ def variance():
     for i in r:
         x += (i - m)**2
     s2 = x/len(r)
-    nump = np.var(r)
-    print(s2,nump)
-
+    print(s2)
 
 #標準偏差
 def standard_deviation():
@@ -60,8 +52,7 @@ def standard_deviation():
     for i in r:
         x += (i - m)**2
     s = (x/len(r))**0.5
-    nump = np.std(r)
-    print(s,nump)
+    print(s)
 
 #標準化
 def standardization():
@@ -76,10 +67,8 @@ def standardization():
 
 #共分散
 def covariance():
-    # r1 = np.random.randint(0,100,100)
-    # r2 = np.random.randint(0,100,100)
-    r1 = [36,73,51,80]
-    r2 = [90,57,36,17]
+    r1 = np.random.randint(0,100,100)
+    r2 = np.random.randint(0,100,100)
     m1 = sum(r1) / len(r1)
     m2 = sum(r2) / len(r2)
     d1 = [i - m1 for i in r1]
@@ -102,12 +91,18 @@ def correlation():
     for c1,c2 in zip(d1,d2):
         c += c1 * c2
     c = c / len(r1)
-
     sx,sy = 0,0
     for s1,s2 in zip(r1,r2):
         sx += (s1 - m1)**2
         sy += (s2 - m2)**2
     s = ((sx/len(r1))**0.5) * ((sy/len(r1))**0.5)
-    nu = np.corrcoef(r1,r2)[0,1]
     print(c / s)
-    print(nu)
+
+mean()
+median()
+mode()
+variance()
+standard_deviation()
+standardization()
+covariance()
+correlation()
